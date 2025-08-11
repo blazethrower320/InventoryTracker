@@ -1,39 +1,40 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Dynamic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace InventoryTracker.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
-    private ObservableCollection<Items> allItems = new ObservableCollection<Items>();
+    private object currentPage;
+    public DashboardViewModel DashboardPage { get; } = new DashboardViewModel();
+    public WastedViewModel WastedPage { get; } = new WastedViewModel();
+    public ICommand NavigateToDashboardCommand { get; }
+    public ICommand NavigateToWastedCommand { get; }
+
+
+
     public MainWindowViewModel()
     {
-        Task.Run(async () =>
-        {
-            await Task.Delay(2000);
-            allItems.Add(new Items { ItemName = "Water", Quantity = 5, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 1});
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-            allItems.Add(new Items { ItemName = "Dr. Pepper", Quantity = 1, Category = "Drink", LastUpdated = DateTime.Now, SKUID = 2 });
-        });
+        NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard);
+        NavigateToWastedCommand = new RelayCommand(NavigateToWasted);
+
+        CurrentPage = DashboardPage;
+    }
+    private void NavigateToDashboard()
+    {
+        CurrentPage = DashboardPage;
+    }
+    
+    private void NavigateToWasted()
+    {
+        CurrentPage = WastedPage;
     }
 }

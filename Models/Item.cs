@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace InventoryTracker.Models
 {
-    public class Items
+    public class Item
     {
-        public int SKUID { get; set; }
+        public string SKUID { get; set; }
         public string ItemName { get; set; }
         public int Quantity { get; set; }
         public string Category { get; set; }
