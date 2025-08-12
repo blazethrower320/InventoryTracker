@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using InventoryTracker.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace InventoryTracker.ViewModels;
 
@@ -11,6 +13,7 @@ public class ViewModelBase : ObservableObject
     public ObservableCollection<Category> CategoryList { get; set; }
     public ViewModelBase()
     {
+
         AllItems = new ObservableCollection<Item>
             {
                 new Item { SKUID = "SKU001", ItemName = "Apple iPhone 14", Quantity = 25, Category = "Electronics", LastUpdated = DateTime.Now },

@@ -10,21 +10,20 @@ using System.Windows.Input;
 
 namespace InventoryTracker.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
     private object currentPage;
     public DashboardViewModel DashboardPage { get; } = new DashboardViewModel();
     public WastedViewModel WastedPage { get; } = new WastedViewModel();
+    public NewProductViewModel NewProductPage { get; } = new NewProductViewModel();
     public ICommand NavigateToDashboardCommand { get; }
     public ICommand NavigateToWastedCommand { get; }
-
-
-
     public MainWindowViewModel()
     {
         NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard);
         NavigateToWastedCommand = new RelayCommand(NavigateToWasted);
+
 
         CurrentPage = DashboardPage;
     }
@@ -32,7 +31,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         CurrentPage = DashboardPage;
     }
-    
+
     private void NavigateToWasted()
     {
         CurrentPage = WastedPage;

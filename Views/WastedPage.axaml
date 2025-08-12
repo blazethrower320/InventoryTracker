@@ -33,7 +33,7 @@
 					Grid.Row="0"
 					Grid.Column="1"
 					Margin="10"
-					Command="{Binding NavigateToNewProductCommand}"></Button>
+					Command=""></Button>
 			<Button Content="+ New Category"
 					HorizontalAlignment="Right"
 					Grid.Row="0"
