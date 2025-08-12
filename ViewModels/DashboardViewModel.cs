@@ -10,12 +10,12 @@ using System.Windows.Input;
 
 namespace InventoryTracker.ViewModels
 {
-    public partial class DashboardViewModel : ObservableObject
+    public partial class DashboardViewModel : ViewModelBase
     {
+        /*
         public ObservableCollection<Item> AllItems { get; set; }
-
         public DashboardViewModel() 
-        { 
+        {
             AllItems = new ObservableCollection<Item>
             {
                 new Item { SKUID = "SKU001", ItemName = "Apple iPhone 14", Quantity = 25, Category = "Electronics", LastUpdated = DateTime.Now },
@@ -24,6 +24,8 @@ namespace InventoryTracker.ViewModels
                 new Item { SKUID = "SKU004", ItemName = "Office Chair", Quantity = 3, Category = "Furniture", LastUpdated = DateTime.Now.AddDays(-3) },
                 new Item { SKUID = "SKU005", ItemName = "Wireless Mouse", Quantity = 0, Category = "Accessories", LastUpdated = DateTime.Now.AddDays(-4) }
             };
+
         }
+        */
     }
 }

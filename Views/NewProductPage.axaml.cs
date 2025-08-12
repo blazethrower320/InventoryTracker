@@ -5,11 +5,11 @@ using InventoryTracker.ViewModels;
 
 namespace InventoryTracker;
 
-public partial class DashboardPage : UserControl
+public partial class NewProductPage : UserControl
 {
-    public DashboardPage()
+    public NewProductPage()
     {
         InitializeComponent();
-        DataContext = new DashboardViewModel();
+        DataContext = new NewProductViewModel();
     }
 }

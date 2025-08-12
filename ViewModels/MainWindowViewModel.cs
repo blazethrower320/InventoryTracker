@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace InventoryTracker.ViewModels;
 
-public partial class MainWindowViewModel : ObservableObject
+public partial class MainWindowViewModel : ViewModelBase
 {
     [ObservableProperty]
     private object currentPage;
