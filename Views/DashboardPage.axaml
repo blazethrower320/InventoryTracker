@@ -103,7 +103,7 @@
                                        Grid.Row="0" Grid.Column="0"
                                        Foreground="White" />
 
-							<TextBox Text="Search Item"
+							<TextBox Watermark="Search Item"
                                      Grid.Row="0" Grid.Column="1"
                                      Width="100"
                                      VerticalAlignment="Center"

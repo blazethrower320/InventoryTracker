@@ -1,13 +1,12 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using InventoryTracker.ViewModels;
 
 namespace InventoryTracker;
 
-public partial class WastedPage : UserControl
+public partial class NewCategoryPage : UserControl
 {
-    public WastedPage()
+    public NewCategoryPage()
     {
         InitializeComponent();
     }

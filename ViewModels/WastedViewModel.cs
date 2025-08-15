@@ -13,18 +13,28 @@ namespace InventoryTracker.ViewModels
 {
     public class WastedViewModel : ViewModelBase
     {
-        /*
-        public NewProductViewModel NewProductPage { get; } = new NewProductViewModel();
+        private readonly Action _navigateToNewProduct;
+        private readonly Action _navigateToNewCategory;
+
         public ICommand NavigateToNewProductCommand { get; }
-        public WastedViewModel() 
+        public ICommand NavigateToNewCategoryCommand { get; }
+
+        public WastedViewModel(Action navigateToNewProduct = null, Action navigateToNewCategory = null)
         {
+            _navigateToNewProduct = navigateToNewProduct;
+            _navigateToNewCategory = navigateToNewCategory;
             NavigateToNewProductCommand = new RelayCommand(NavigateToNewProduct);
+            NavigateToNewCategoryCommand = new RelayCommand(NavigateToNewCategory);
         }
+
         private void NavigateToNewProduct()
         {
-            CurrentPage = NewProductPage;
+            _navigateToNewProduct?.Invoke();
         }
-        */
+        private void NavigateToNewCategory()
+        {
+            _navigateToNewCategory?.Invoke();
+        }
     }
 
 }

@@ -5,8 +5,8 @@
              xmlns:vm="clr-namespace:InventoryTracker.ViewModels"
 			 xmlns:models="using:InventoryTracker.Models"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="InventoryTracker.NewProductPage"
-			 x:DataType="vm:NewProductViewModel">
+			 x:Class="InventoryTracker.NewCategoryPage"
+			 x:DataType="vm:NewCategoryViewModel">
 	<Border Background="#18191A">
 		<Grid>
 			<Grid.RowDefinitions>
@@ -14,7 +14,7 @@
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 
-			<TextBlock Text="Create New Product" Grid.Row="0"
+			<TextBlock Text="Create New Category" Grid.Row="0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        FontSize="25"
@@ -32,54 +32,42 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				
-				
-				<TextBlock Text="Item Name" 
+
+
+				<TextBlock Text="Category Name"
 						   Grid.Row="0"
 						   Margin="20,0,0,5"/>
-				<TextBox Watermark="Enter Item Name"
+				<TextBox Watermark="Enter Name"
 						 Grid.Row="1"
-						 Margin="20,0,20,10"
-						 />
-				
-				<TextBlock Text="Item Quantity"
+						 Margin="20,0,20,10"/>
+
+				<TextBlock Text="Category Color"
 						   Grid.Row="2"
 						   Margin="20,0,0,5"/>
-				<TextBox Watermark="Enter Item Quantity"
+				<TextBox Watermark="Hex Code"
 						 Grid.Row="3"
 						 Margin="20,0,20,10"/>
 
-				<TextBlock Text="Category"
+				<TextBlock Text="Category Description"
 						   Grid.Row="4"
-						   Margin="20,0,20,5"
-						   />
-				<ComboBox 
-					Grid.Row="5"
-					Margin="20,0,20,10"
-					ItemsSource="{Binding CategoryList}"
-					DisplayMemberBinding="{Binding CategoryType}"/>
-
-				<TextBlock Text="Item Description"
-						   Grid.Row="6"
 						   Margin="20,0,0,5"/>
-				<TextBox Watermark="Enter Item Description"
-						 Grid.Row="7"
+				<TextBox Text=""
+						 Grid.Row="5"
 						 Height="100"
 						 Margin="20,0,20,10"
-						 TextWrapping="Wrap"/>
-				<Button Content="Create" 
-						Grid.Row="8"
+						 TextWrapping="Wrap"
+						 Watermark="Description of Category"/>
+				<Button Content="Create"
+						Grid.Row="6"
 						HorizontalAlignment="Stretch"
 						Margin="20,0,20,10"
 						Background="#4278D4"
 						HorizontalContentAlignment="Center"
 						FontSize="15"/>
-				
+
 			</Grid>
-			
+
 		</Grid>
 	</Border>
 </UserControl>

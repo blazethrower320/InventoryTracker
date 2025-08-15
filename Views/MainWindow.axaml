@@ -69,14 +69,17 @@
 		<!-- Main Content -->
 		<ContentControl Grid.Column="1" Content="{Binding CurrentPage}">
 			<ContentControl.DataTemplates>
-				<DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+				<DataTemplate DataType="vm:DashboardViewModel">
 					<local:DashboardPage DataContext="{Binding}"/>
 				</DataTemplate>
-				<DataTemplate DataType="{x:Type vm:WastedViewModel}">
+				<DataTemplate DataType="vm:WastedViewModel">
 					<local:WastedPage DataContext="{Binding}"/>
 				</DataTemplate>
-				<DataTemplate DataType="{x:Type vm:NewProductViewModel}">
-					<local:WastedPage DataContext="{Binding}"/>
+				<DataTemplate DataType="vm:NewProductViewModel">
+					<local:NewProductPage DataContext="{Binding}"/>
+				</DataTemplate>
+				<DataTemplate DataType="vm:NewCategoryViewModel">
+					<local:NewCategoryPage DataContext="{Binding}"/>
 				</DataTemplate>
 			</ContentControl.DataTemplates>
 		</ContentControl>
