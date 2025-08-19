@@ -43,6 +43,7 @@
 				<TextBox Watermark="Enter Item Name"
 						 Grid.Row="1"
 						 Margin="20,0,20,10"
+						 x:Name="itemName"
 						 />
 				
 				<TextBlock Text="Item Quantity"
@@ -50,7 +51,8 @@
 						   Margin="20,0,0,5"/>
 				<TextBox Watermark="Enter Item Quantity"
 						 Grid.Row="3"
-						 Margin="20,0,20,10"/>
+						 Margin="20,0,20,10"
+						 x:Name="itemQuantity"/>
 
 				<TextBlock Text="Category"
 						   Grid.Row="4"
@@ -60,7 +62,8 @@
 					Grid.Row="5"
 					Margin="20,0,20,10"
 					ItemsSource="{Binding CategoryList}"
-					DisplayMemberBinding="{Binding CategoryType}"/>
+					DisplayMemberBinding="{Binding CategoryType}"
+					x:Name="itemCategory"/>
 
 				<TextBlock Text="Item Description"
 						   Grid.Row="6"
@@ -69,14 +72,16 @@
 						 Grid.Row="7"
 						 Height="100"
 						 Margin="20,0,20,10"
-						 TextWrapping="Wrap"/>
+						 TextWrapping="Wrap"
+						 x:Name="itemDescription"/>
 				<Button Content="Create" 
 						Grid.Row="8"
 						HorizontalAlignment="Stretch"
 						Margin="20,0,20,10"
 						Background="#4278D4"
 						HorizontalContentAlignment="Center"
-						FontSize="15"/>
+						FontSize="15"
+						Click="CreateProduct_Click"/>
 				
 			</Grid>
 			

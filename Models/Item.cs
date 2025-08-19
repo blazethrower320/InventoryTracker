@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace InventoryTracker.Models
 {
-    public class Item
+    public partial class Item : ObservableObject
     {
         public string SKUID { get; set; }
         public string ItemName { get; set; }
-        public int Quantity { get; set; }
+        [ObservableProperty]
+        public int quantity;
         public string Category { get; set; }
         public DateTime LastUpdated {  get; set; }
 

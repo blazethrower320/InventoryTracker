@@ -10,6 +10,5 @@ public partial class DashboardPage : UserControl
     public DashboardPage()
     {
         InitializeComponent();
-        DataContext = new DashboardViewModel();
     }
 }

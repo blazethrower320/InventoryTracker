@@ -111,11 +111,11 @@
 														<ColumnDefinition Width="Auto" />
 														<ColumnDefinition Width="Auto" />
 													</Grid.ColumnDefinitions>
-													<Button Content="-" Margin="2" Grid.Column="0"></Button>
-													<TextBox Text="{Binding Quantity}" Grid.Column="1"
+													<Button Click="RemoveQuantity_Button" CommandParameter="{Binding}" Content="-" Margin="2" Grid.Column="0"></Button>
+													<TextBox Text="{Binding Quantity, Mode=TwoWay}" Grid.Column="1"
 															 HorizontalContentAlignment="Center"
 															 VerticalContentAlignment="Center"></TextBox>
-													<Button Content="+" Margin="2" Grid.Column="2"></Button>
+													<Button Click="AddQuantity_Click" CommandParameter="{Binding}" Content="+" Margin="2" Grid.Column="2"></Button>
 												</Grid>
 
 												<TextBlock Grid.Column="1" Text="{Binding SKUID}" Foreground="White" />

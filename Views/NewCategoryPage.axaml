@@ -40,14 +40,16 @@
 						   Margin="20,0,0,5"/>
 				<TextBox Watermark="Enter Name"
 						 Grid.Row="1"
-						 Margin="20,0,20,10"/>
+						 Margin="20,0,20,10"
+						 x:Name="categoryName"/>
 
 				<TextBlock Text="Category Color"
 						   Grid.Row="2"
 						   Margin="20,0,0,5"/>
 				<TextBox Watermark="Hex Code"
 						 Grid.Row="3"
-						 Margin="20,0,20,10"/>
+						 Margin="20,0,20,10"
+						 x:Name="categoryHexCode"/>
 
 				<TextBlock Text="Category Description"
 						   Grid.Row="4"
@@ -57,14 +59,16 @@
 						 Height="100"
 						 Margin="20,0,20,10"
 						 TextWrapping="Wrap"
-						 Watermark="Description of Category"/>
+						 Watermark="Description of Category"
+						 x:Name="categoryDescription"/>
 				<Button Content="Create"
 						Grid.Row="6"
 						HorizontalAlignment="Stretch"
 						Margin="20,0,20,10"
 						Background="#4278D4"
 						HorizontalContentAlignment="Center"
-						FontSize="15"/>
+						FontSize="15"
+						Click="CreateCategory_Click"/>
 
 			</Grid>
 

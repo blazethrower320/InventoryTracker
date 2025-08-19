@@ -9,6 +9,7 @@ namespace InventoryTracker.Models
     public class Category
     {
         public string CategoryType { get; set; }
-        public int ItemCount { get; set; }
+        public string HexCode { get; set; }
+        public string Description { get; set; }
     }
 }
