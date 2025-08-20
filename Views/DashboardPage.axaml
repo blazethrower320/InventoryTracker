@@ -110,7 +110,8 @@
                                      VerticalContentAlignment="Center"
                                      HorizontalAlignment="Center"
                                      HorizontalContentAlignment="Center"
-                                     Margin="10" />
+                                     Margin="10" 
+									 TextChanged="SearchBox_TextChanged"/>
 
 							<!-- Header Row -->
 							<Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,0,10,0" HorizontalAlignment="Stretch">
@@ -137,7 +138,7 @@
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch">
 								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-									<ItemsControl ItemsSource="{Binding AllItems}">
+									<ItemsControl ItemsSource="{Binding DisplayedItems}">
 										<ItemsControl.ItemTemplate>
 											<DataTemplate x:DataType="models:Item">
 												<Grid Margin="5" HorizontalAlignment="Stretch">

@@ -11,4 +11,12 @@ public partial class DashboardPage : UserControl
     {
         InitializeComponent();
     }
+    private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is TextBox tb && DataContext is DashboardViewModel vm)
+        {
+            vm.SearchType.SearchText = tb.Text;
+            vm.FormatSearch();
+        }
+    }
 }

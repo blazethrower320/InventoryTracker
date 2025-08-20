@@ -14,10 +14,12 @@ public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
     private object currentPage;
+    public Search Search;
 
     public ObservableCollection<Item> AllItems { get; }
     public ObservableCollection<Category> CategoryList { get; }
-
+    [ObservableProperty]
+    private ObservableCollection<Item> displayedItems;
     public DashboardViewModel DashboardPage { get; }
     public WastedViewModel WastedPage { get; }
     public NewProductViewModel NewProductPage { get; }
@@ -30,6 +32,7 @@ public partial class MainWindowViewModel : ObservableObject
 
     public MainWindowViewModel()
     {
+        Search = new Search();
         AllItems = new ObservableCollection<Item>
         {
             new Item { SKUID = "SKU001", ItemName = "Apple iPhone 14", Quantity = 25, Category = "Electronics", LastUpdated = DateTime.Now },
@@ -45,10 +48,11 @@ public partial class MainWindowViewModel : ObservableObject
             new Category { CategoryType = "Clothing" },
             new Category { CategoryType = "Accessories" }
         };
+        DisplayedItems = AllItems;
 
 
-        DashboardPage = new DashboardViewModel(AllItems);
-        WastedPage = new WastedViewModel(AllItems, CategoryList, NavigateToNewProduct, NavigateToNewCategory);
+        DashboardPage = new DashboardViewModel(AllItems, DisplayedItems, Search);
+        WastedPage = new WastedViewModel(AllItems, DisplayedItems, CategoryList, Search, NavigateToNewProduct, NavigateToNewCategory);
 
         NewProductPage = new NewProductViewModel(AllItems, CategoryList, NavigateToWasted);
         NewCategoryPage = new NewCategoryViewModel(CategoryList, NavigateToWasted);
@@ -64,19 +68,27 @@ public partial class MainWindowViewModel : ObservableObject
     private void NavigateToNewProduct()
     {
         CurrentPage = NewProductPage;
+        Search.searchText = string.Empty;
+        DisplayedItems = AllItems;
     }
     private void NavigateToNewCategory()
     {
         CurrentPage = NewCategoryPage;
+        Search.searchText = string.Empty;
+        DisplayedItems = AllItems;
     }
 
     private void NavigateToDashboard()
     {
         CurrentPage = DashboardPage;
+        Search.searchText = string.Empty;
+        DisplayedItems = AllItems;
     }
 
     private void NavigateToWasted()
     {
         CurrentPage = WastedPage;
+        Search.searchText = string.Empty;
+        DisplayedItems = AllItems;
     }
 }
