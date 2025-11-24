@@ -71,6 +71,8 @@
 							Grid.Column="0"
 							TextChanged="SearchBox_TextChanged"
 							/>
+
+
 						<ComboBox ItemsSource="{Binding CategoryList}"
 								  DisplayMemberBinding="{Binding CategoryType}"
 								  Grid.Row="0"
@@ -116,11 +118,13 @@
 													<Button Click="RemoveQuantity_Button" CommandParameter="{Binding}" Content="-" Margin="2" Grid.Column="0"></Button>
 													<TextBox Text="{Binding Quantity, Mode=TwoWay}" Grid.Column="1"
 															 HorizontalContentAlignment="Center"
-															 VerticalContentAlignment="Center"></TextBox>
+															 VerticalContentAlignment="Center"
+															 TextChanged="QuantityTextBox_Changed"
+															 Tag="{Binding}"></TextBox>
 													<Button Click="AddQuantity_Click" CommandParameter="{Binding}" Content="+" Margin="2" Grid.Column="2"></Button>
 												</Grid>
 
-												<TextBlock Grid.Column="1" Text="{Binding SKUID}" Foreground="White" />
+												<TextBlock Grid.Column="1" Text="{Binding SkuID}" Foreground="White" />
 												<TextBlock Grid.Column="2" Text="{Binding ItemName}" Foreground="White" />
 												<TextBlock Grid.Column="3" Text="{Binding Category}" Foreground="White" />
 											</Grid>

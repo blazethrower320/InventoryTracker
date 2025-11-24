@@ -22,25 +22,5 @@ namespace InventoryTracker.ViewModels
             displayedItems = displayed;
             SearchType = search;
         }
-        public void FormatSearch()
-        {
-            // if no search text, show all items
-            if (string.IsNullOrWhiteSpace(SearchType.SearchText))
-            {
-                DisplayedItems.Clear();
-                foreach (var item in AllItems)
-                    DisplayedItems.Add(item);
-                return;
-            }
-
-            // otherwise, filter
-            var items = AllItems
-                .Where(c => c.ItemName.Contains(SearchType.SearchText, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            DisplayedItems.Clear();
-            foreach (var item in items)
-                DisplayedItems.Add(item);
-        }
     }
 }

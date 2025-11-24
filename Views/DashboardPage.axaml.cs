@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using InventoryTracker.Helpers;
 using InventoryTracker.ViewModels;
 
 namespace InventoryTracker;
@@ -16,7 +17,8 @@ public partial class DashboardPage : UserControl
         if (sender is TextBox tb && DataContext is DashboardViewModel vm)
         {
             vm.SearchType.SearchText = tb.Text;
-            vm.FormatSearch();
+            FormatHelper.FormatSearch(vm.DisplayedItems, vm.AllItems, tb.Text);
+            //vm.FormatSearch();
         }
     }
 }

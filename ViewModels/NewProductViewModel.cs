@@ -2,6 +2,7 @@
 using Avalonia.Interactivity;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InventoryTracker.Database;
 using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,16 @@ namespace InventoryTracker.ViewModels
 {
     public partial class NewProductViewModel : ObservableObject
     {
+        public DatabaseManager database;
         public ObservableCollection<Item> AllItems { get; }
         public ObservableCollection<Category> CategoryList { get; }
         private readonly Action _navigateToWasted;
         public ICommand CreateProductCommand { get; }
 
 
-        public NewProductViewModel(ObservableCollection<Item> allItems, ObservableCollection<Category> categoryList, Action navigateToWasted)
+        public NewProductViewModel(ObservableCollection<Item> allItems, ObservableCollection<Category> categoryList, Action navigateToWasted, DatabaseManager database)
         {
+            this.database = database;
             AllItems = allItems;
             CategoryList = categoryList;
             _navigateToWasted = navigateToWasted;

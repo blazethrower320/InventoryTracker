@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InventoryTracker.Database;
 using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace InventoryTracker.ViewModels
 {
     public partial class WastedViewModel : ViewModelBase
     {
+        public DatabaseManager database;
         public ObservableCollection<Item> AllItems { get; }
         [ObservableProperty]
         private ObservableCollection<Item> displayedItems;
@@ -23,10 +25,11 @@ namespace InventoryTracker.ViewModels
         public ICommand NavigateToNewProductCommand { get; }
         public ICommand NavigateToNewCategoryCommand { get; }
 
-        public WastedViewModel(ObservableCollection<Item> allItems, ObservableCollection<Item> displayeditems, ObservableCollection<Category> categoryList, Search search, Action navigateToNewProduct = null, Action navigateToNewCategory = null)
+        public WastedViewModel(ObservableCollection<Item> allItems, ObservableCollection<Item> displayeditems, ObservableCollection<Category> categoryList, Search search, DatabaseManager database, Action navigateToNewProduct = null, Action navigateToNewCategory = null)
         {
+            this.database = database;
             AllItems = allItems;
-            displayedItems = allItems;
+            DisplayedItems = displayeditems;
             CategoryList = categoryList;
             SearchType = search;
             _navigateToNewProduct = navigateToNewProduct;
@@ -50,6 +53,7 @@ namespace InventoryTracker.ViewModels
             var foundItem = AllItems.FirstOrDefault(c => c.Equals(item));
             if (foundItem == null) return;
             foundItem.Quantity += 1;
+            database.updateQuantity(foundItem.SkuID, foundItem.Quantity);
         }
         public void RemoveQuantity(Item item)
         {
@@ -57,15 +61,7 @@ namespace InventoryTracker.ViewModels
             if (foundItem == null) return;
             if (foundItem.Quantity == 0) return;
             foundItem.Quantity -= 1;
-        }
-        public void FormatSearch()
-        {
-
-            var items = AllItems
-            .Where(c => c.ItemName.Contains(SearchType.SearchText, StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-            displayedItems = new ObservableCollection<Item>(items);
+            database.updateQuantity(foundItem.SkuID, foundItem.Quantity);
         }
     }
 

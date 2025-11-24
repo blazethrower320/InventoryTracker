@@ -56,7 +56,7 @@
 					<Button Command="{Binding NavigateToDashboardCommand}">Home</Button>
 					<Button Command="{Binding NavigateToWastedCommand}">Inventory</Button>
 					<Button>Analytics</Button>
-					<Button>Settings</Button>
+					<Button Command="{Binding NavigateToSettingsCommand}">Settings</Button>
 				</StackPanel>
 
 				<RadioButton Grid.Row="1"
@@ -74,6 +74,9 @@
 				</DataTemplate>
 				<DataTemplate DataType="vm:WastedViewModel">
 					<local:WastedPage DataContext="{Binding}"/>
+				</DataTemplate>
+				<DataTemplate DataType="vm:SettingsViewModel">
+					<local:SettingsPage DataContext="{Binding}"/>
 				</DataTemplate>
 				<DataTemplate DataType="vm:NewProductViewModel">
 					<local:NewProductPage DataContext="{Binding}"/>

@@ -6,6 +6,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using InventoryTracker.ViewModels;
 using InventoryTracker.Views;
+using InventoryTracker.Database;
 
 namespace InventoryTracker;
 
@@ -22,10 +23,23 @@ public partial class App : Application
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
+
+            // TODO: Needs to be changed to Reading JSON FILE
+            var config = new Models.DatabaseSettings
+            {
+                Database = "testing",
+                Password = "password",
+                Server = "127.0.0.1",
+                Username = "root"
+            };
+
+            var db = new DatabaseManager(config);
+            db.createItemsTable();
+
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = new MainWindowViewModel(db, config),
             };
         }
 

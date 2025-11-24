@@ -9,11 +9,13 @@ namespace InventoryTracker.Models
 {
     public partial class Item : ObservableObject
     {
-        public string SKUID { get; set; }
+        [ObservableProperty]
+        public int skuID;
         public string ItemName { get; set; }
         [ObservableProperty]
         public int quantity;
         public string Category { get; set; }
+        public string itemDescription {  get; set; }
         public DateTime LastUpdated {  get; set; }
 
     }

@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:InventoryTracker.ViewModels"
+			 xmlns:models="using:InventoryTracker.Models"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="InventoryTracker.SettingsPage"
+			 x:DataType="vm:SettingsViewModel">
+	<Border Background="#18191A">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<Border Background="#242526" Grid.Column="0" Margin="20" CornerRadius="10" VerticalAlignment="Top" Padding="0,0,0,5">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+					</Grid.RowDefinitions>
+
+					<TextBlock 
+						Grid.Row="0" 
+						Text="Database Settings" 
+						HorizontalAlignment="Center" 
+						Padding="0,20,0,0" 
+						FontSize="25"/>
+					<TextBlock 
+						Grid.Row="1" 
+						Text="Server"
+						Padding="15,0,0,0"
+						FontSize="16"/>
+					<TextBox 
+						Watermark="127.0.0.1"
+						 Grid.Row="2"
+						 Margin="15,0,20,10"
+						 Text="{Binding Server}"
+						 x:Name="serverText"/>
+
+					<TextBlock 
+						Grid.Row="3" 
+						Text="Database"
+						Padding="15,0,0,0"
+						FontSize="16"/>
+					<TextBox 
+						 Text="{Binding Database}"
+						 Grid.Row="4"
+						 Margin="15,0,20,10"
+						 x:Name="databaseText"/>
+
+
+					<TextBlock 
+						Grid.Row="5" 
+						Text="Username"
+						Padding="15,0,0,0"
+						FontSize="16"/>
+					<TextBox 
+						 Text="{Binding Username}"
+						 Grid.Row="6"
+						 Margin="15,0,20,10"
+						 x:Name="usernameText"/>
+					<TextBlock 
+						Grid.Row="7" 
+						Text="Password"
+						Padding="15,0,0,0"
+						FontSize="16"/>
+					<TextBox 
+						 Text="{Binding Password}"
+						 Grid.Row="8"
+						 Margin="15,0,20,10"
+						 x:Name="passwordText"/>
+
+					<Button Content="Save Changes" 
+						Grid.Row="9"
+						HorizontalAlignment="Stretch"
+						Margin="20,0,20,10"
+						Background="#4278D4"
+						HorizontalContentAlignment="Center"
+						FontSize="15"
+						Click="SaveDatabaseSettings_Click"/>
+
+				</Grid>
+			</Border>
+
+			<Border Background="#242526" Grid.Column="1" Margin="20" CornerRadius="10" VerticalAlignment="Top" Padding="0,0,0,5">
+				<StackPanel>
+					<TextBlock Text="Values"></TextBlock>
+					<TextBlock Text="Low Stock Value"></TextBlock>
+					<TextBlock Text="Something"></TextBlock>
+				</StackPanel>
+
+			</Border>
+
+		</Grid>
+	</Border>
+</UserControl>
