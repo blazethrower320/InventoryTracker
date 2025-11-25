@@ -38,6 +38,14 @@
 				<TextBlock Text="Category Name"
 						   Grid.Row="0"
 						   Margin="20,0,0,5"/>
+				<TextBlock x:Name="categoryNameError"
+				   Text="Please Enter a Category Name"
+				   Foreground="Red"
+				   Margin="140,0,0,0"
+				   Grid.Row="0"
+				   IsVisible="False" />
+
+
 				<TextBox Watermark="Enter Name"
 						 Grid.Row="1"
 						 Margin="20,0,20,10"
@@ -46,6 +54,13 @@
 				<TextBlock Text="Category Color"
 						   Grid.Row="2"
 						   Margin="20,0,0,5"/>
+				<TextBlock x:Name="categoryColorError"
+				   Text="Please Enter a Category Color"
+				   Foreground="Red"
+				   Margin="140,0,0,0"
+				   Grid.Row="2"
+				   IsVisible="False" />
+
 				<TextBox Watermark="Hex Code"
 						 Grid.Row="3"
 						 Margin="20,0,20,10"
@@ -54,6 +69,12 @@
 				<TextBlock Text="Category Description"
 						   Grid.Row="4"
 						   Margin="20,0,0,5"/>
+				<TextBlock x:Name="categoryDescriptionError"
+				   Text="Please Enter a Description"
+				   Foreground="Red"
+				   Margin="180,0,0,0"
+				   Grid.Row="4"
+				   IsVisible="False" />
 				<TextBox Text=""
 						 Grid.Row="5"
 						 Height="100"

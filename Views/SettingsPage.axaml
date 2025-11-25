@@ -44,7 +44,7 @@
 						Watermark="127.0.0.1"
 						 Grid.Row="2"
 						 Margin="15,0,20,10"
-						 Text="{Binding Server}"
+						 Text="{Binding DbSettings.Server}"
 						 x:Name="serverText"/>
 
 					<TextBlock 
@@ -53,7 +53,7 @@
 						Padding="15,0,0,0"
 						FontSize="16"/>
 					<TextBox 
-						 Text="{Binding Database}"
+						 Text="{Binding DbSettings.Database}"
 						 Grid.Row="4"
 						 Margin="15,0,20,10"
 						 x:Name="databaseText"/>
@@ -65,7 +65,7 @@
 						Padding="15,0,0,0"
 						FontSize="16"/>
 					<TextBox 
-						 Text="{Binding Username}"
+						 Text="{Binding DbSettings.Username}"
 						 Grid.Row="6"
 						 Margin="15,0,20,10"
 						 x:Name="usernameText"/>
@@ -75,7 +75,7 @@
 						Padding="15,0,0,0"
 						FontSize="16"/>
 					<TextBox 
-						 Text="{Binding Password}"
+						 Text="{Binding DbSettings.Password}"
 						 Grid.Row="8"
 						 Margin="15,0,20,10"
 						 x:Name="passwordText"/>
@@ -93,11 +93,55 @@
 			</Border>
 
 			<Border Background="#242526" Grid.Column="1" Margin="20" CornerRadius="10" VerticalAlignment="Top" Padding="0,0,0,5">
-				<StackPanel>
-					<TextBlock Text="Values"></TextBlock>
-					<TextBlock Text="Low Stock Value"></TextBlock>
-					<TextBlock Text="Something"></TextBlock>
-				</StackPanel>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+						<RowDefinition Height="AUTO" />
+					</Grid.RowDefinitions>
+
+					<TextBlock 
+						Grid.Row="0" 
+						Text="Threshold Settings" 
+						HorizontalAlignment="Center" 
+						Padding="0,20,0,0" 
+						FontSize="25"/>
+
+					<TextBlock 
+						Grid.Row="1" 
+						Text="Low Stock Value"
+						Padding="15,0,0,0"
+						FontSize="16"/>
+					<TextBox 
+						 Grid.Row="2"
+						 Margin="15,0,20,10"
+						 Text="{Binding Thresholds.LowStockThreshold, Mode=TwoWay}"
+						 x:Name="lowStock"/>
+					<TextBlock x:Name="lowStockError"
+							FontSize="16"
+							Foreground="red"
+							Grid.Row="1"
+						    Margin="150,0,0,5"
+							IsVisible="False"/>
+
+					<Button Content="Save Changes" 
+						Grid.Row="3"
+						HorizontalAlignment="Stretch"
+						Margin="20,0,20,10"
+						Background="#4278D4"
+						HorizontalContentAlignment="Center"
+						FontSize="15"
+						Click="SaveThresholdSettings_Click"/>
+
+
+				</Grid>
 
 			</Border>
 

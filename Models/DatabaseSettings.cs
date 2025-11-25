@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace InventoryTracker.Models
 {
-    public class DatabaseSettings
+    public partial class DatabaseSettings : ObservableObject
     {
-        public string Server {  get; set; }
-        public string Database {  get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        [ObservableProperty]
+        private string server = "127.0.0.1";
+        [ObservableProperty]
+        private string database = "Testingd";
+        [ObservableProperty]
+        private string username = "root";
+        [ObservableProperty]
+        private string password = "password";
     }
 }

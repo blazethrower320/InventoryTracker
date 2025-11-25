@@ -59,10 +59,15 @@
 					<Button Command="{Binding NavigateToSettingsCommand}">Settings</Button>
 				</StackPanel>
 
-				<RadioButton Grid.Row="1"
-                             Margin="10"
-                             VerticalAlignment="Bottom"
-                             Foreground="White">Close</RadioButton>
+				<Button 
+				Grid.Row="1" 
+				Margin="10" 
+				VerticalAlignment="Bottom"
+				HorizontalAlignment="Center"
+				Width="100"
+				HorizontalContentAlignment="Center"
+				Foreground="White"
+				Click="CloseButton_Click">Close</Button>
 			</Grid>
 		</Border>
 

@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace InventoryTracker.Models
 {
-    public partial class Search : ObservableObject
+    public partial class Thresholds : ObservableObject
     {
         [ObservableProperty]
-        public string searchText;
-        [ObservableProperty]
-        public string category;
+        private int lowStockThreshold;
     }
 }

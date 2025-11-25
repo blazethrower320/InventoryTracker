@@ -19,6 +19,7 @@ public partial class MainWindowViewModel : ObservableObject
     public Search Search;
     public DatabaseManager database;
     public DatabaseSettings databaseSettings;
+    public Thresholds thresholds;
 
     public ObservableCollection<Item> AllItems { get; }
     public ObservableCollection<Category> CategoryList { get; }
@@ -36,41 +37,33 @@ public partial class MainWindowViewModel : ObservableObject
     public ICommand NavigateToNewCategoryCommand { get; }
     public ICommand NavigateToSettingsCommand { get; }
 
-    public MainWindowViewModel(DatabaseManager database, DatabaseSettings settings)
+    public MainWindowViewModel(DatabaseManager? database, DatabaseSettings settings, Thresholds thresholds)
     {
 
         this.database = database;
         this.databaseSettings = settings;
+        this.thresholds = thresholds;
 
         Search = new Search();
-        AllItems = new ObservableCollection<Item>(database.getAllItems());
-        /*
-        AllItems = new ObservableCollection<Item>
+
+        AllItems = new ObservableCollection<Item>();
+        CategoryList = new ObservableCollection<Category>();
+        if (database != null)
         {
-            new Item { SKUID = "SKU001", ItemName = "Apple iPhone 14", Quantity = 25, Category = "Electronics", LastUpdated = DateTime.Now },
-            new Item { SKUID = "SKU002", ItemName = "Samsung Galaxy S23", Quantity = 15, Category = "Electronics", LastUpdated = DateTime.Now.AddDays(-1) },
-            new Item { SKUID = "SKU003", ItemName = "Dell Laptop", Quantity = 8, Category = "Computers", LastUpdated = DateTime.Now.AddDays(-2) },
-            new Item { SKUID = "SKU004", ItemName = "Office Chair", Quantity = 3, Category = "Furniture", LastUpdated = DateTime.Now.AddDays(-3) },
-            new Item { SKUID = "SKU005", ItemName = "Wireless Mouse", Quantity = 0, Category = "Accessories", LastUpdated = DateTime.Now.AddDays(-4) }
-        };
-        */
-        CategoryList = new ObservableCollection<Category>
-        {
-            new Category {CategoryType = "All" },
-            new Category { CategoryType = "Electronics" },
-            new Category { CategoryType = "Clothing" },
-            new Category { CategoryType = "Accessories" }
-        };
+            AllItems = new ObservableCollection<Item>(database.getAllItems());
+            CategoryList = new ObservableCollection<Category>(database.getAllCategoires());
+        }
+
         DisplayedItems = new ObservableCollection<Item>(AllItems);
 
 
-        DashboardPage = new DashboardViewModel(AllItems, DisplayedItems, Search);
+        DashboardPage = new DashboardViewModel(this);
         WastedPage = new WastedViewModel(AllItems, DisplayedItems, CategoryList, Search, database, NavigateToNewProduct, NavigateToNewCategory);
 
         NewProductPage = new NewProductViewModel(AllItems, CategoryList, NavigateToWasted, database);
-        NewCategoryPage = new NewCategoryViewModel(CategoryList, NavigateToWasted);
+        NewCategoryPage = new NewCategoryViewModel(CategoryList, NavigateToWasted, database);
 
-        SettingsPage = new SettingsViewModel(NavigateToSettings);
+        SettingsPage = new SettingsViewModel(NavigateToSettings, settings, thresholds);
 
         NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard);
         NavigateToWastedCommand = new RelayCommand(NavigateToWasted);
@@ -83,34 +76,43 @@ public partial class MainWindowViewModel : ObservableObject
 
     private void NavigateToNewProduct()
     {
+        if (NewProductPage == null) return;
         CurrentPage = NewProductPage;
         Search.searchText = string.Empty;
-        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText);
+        Search.category = string.Empty;
+        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText, Search.category);
     }
     private void NavigateToNewCategory()
     {
+        if (NewCategoryPage == null) return;
         CurrentPage = NewCategoryPage;
         Search.searchText = string.Empty;
-        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText);
+        Search.category = string.Empty;
+        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText, Search.category);
     }
     private void NavigateToSettings()
     {
+        if (SettingsPage == null) return;
         CurrentPage = SettingsPage;
         Search.searchText = string.Empty;
+        Search.category = string.Empty;
     }
 
     private void NavigateToDashboard()
     {
+        if (DashboardPage == null) return;
         CurrentPage = DashboardPage;
         Search.searchText = string.Empty;
-
-        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText);
+        Search.category = string.Empty;
+        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText, Search.category);
     }
 
     private void NavigateToWasted()
     {
+        if(WastedPage == null) return;
         CurrentPage = WastedPage;
         Search.searchText = string.Empty;
-        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText);
+        Search.category = string.Empty;
+        FormatHelper.FormatSearch(DisplayedItems, AllItems, Search.searchText, Search.category);
     }
 }

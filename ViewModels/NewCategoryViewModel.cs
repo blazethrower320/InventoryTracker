@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InventoryTracker.Database;
 using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,15 @@ namespace InventoryTracker.ViewModels
 {
     public class NewCategoryViewModel : ObservableObject
     {
+        public DatabaseManager database;
         public ObservableCollection<Category> CategoryList { get; }
         private readonly Action _navigateToWasted;
         public ICommand CreateCategoryCommand { get; }
 
 
-        public NewCategoryViewModel(ObservableCollection<Category> categoryList, Action navigateToWasted)
+        public NewCategoryViewModel(ObservableCollection<Category> categoryList, Action navigateToWasted, DatabaseManager database)
         {
+            this.database = database;
             CategoryList = categoryList;
             _navigateToWasted = navigateToWasted;
 

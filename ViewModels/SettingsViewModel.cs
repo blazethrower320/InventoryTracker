@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +14,17 @@ namespace InventoryTracker.ViewModels
     {
         private readonly Action _navigateToSettings;
         [ObservableProperty]
-        public string username = "root";
+        public DatabaseSettings dbSettings;
         [ObservableProperty]
-        public string password = "password";
-        [ObservableProperty]
-        public string database = "Test";
-        [ObservableProperty]
-        public string server = "127.0.0.1";
+        public Thresholds thresholds;
+        
         public ICommand CreateSettingsCommand { get; }
 
-        public SettingsViewModel(Action navigateToSettings)
+        public SettingsViewModel(Action navigateToSettings, DatabaseSettings settings, Thresholds thresholds)
         {
             _navigateToSettings = navigateToSettings;
+            this.thresholds = thresholds;
+            this.dbSettings = settings;
             CreateSettingsCommand = new RelayCommand(CreateSettings);
         }
         public void CreateSettings()

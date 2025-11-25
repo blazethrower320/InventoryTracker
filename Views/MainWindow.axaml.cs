@@ -10,4 +10,9 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    private void CloseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Close();
+    }
 }

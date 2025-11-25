@@ -75,6 +75,7 @@
 
 						<ComboBox ItemsSource="{Binding CategoryList}"
 								  DisplayMemberBinding="{Binding CategoryType}"
+								  SelectionChanged="CategoryChanged_Change"
 								  Grid.Row="0"
 								  Grid.Column="1"
 								  VerticalAlignment="Center"></ComboBox>

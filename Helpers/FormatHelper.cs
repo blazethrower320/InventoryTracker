@@ -10,19 +10,19 @@ namespace InventoryTracker.Helpers
 {
     public class FormatHelper
     {
-        public static void FormatSearch(ObservableCollection<Item> displayedItems, ObservableCollection<Item> allItems, string searchText)
+        public static void FormatSearch(ObservableCollection<Item> displayedItems, ObservableCollection<Item> allItems, string searchText, string category)
         {
-            if (string.IsNullOrWhiteSpace(searchText))
+            IEnumerable<Item> filteredItems = allItems;
+
+            if (!string.IsNullOrWhiteSpace(category) && !category.Equals("all", StringComparison.OrdinalIgnoreCase))
             {
-                displayedItems.Clear();
-                foreach (var item in allItems)
-                    displayedItems.Add(item);
-                return;
+                filteredItems = filteredItems.Where(i => i.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
             }
 
-            var filteredItems = allItems
-                .Where(i => (!string.IsNullOrEmpty(i.ItemName) && i.ItemName.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
-                .ToList();
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                filteredItems = filteredItems.Where(i => !string.IsNullOrEmpty(i.ItemName) && i.ItemName.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+            }
 
             displayedItems.Clear();
             foreach (var item in filteredItems)

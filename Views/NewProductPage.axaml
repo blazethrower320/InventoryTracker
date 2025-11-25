@@ -40,6 +40,12 @@
 				<TextBlock Text="Item Name" 
 						   Grid.Row="0"
 						   Margin="20,0,0,5"/>
+				<TextBlock x:Name="nameError"
+							Foreground="red"
+							Grid.Row="0"
+						    Margin="120,0,0,5"
+							IsVisible="False"/>
+
 				<TextBox Watermark="Enter Item Name"
 						 Grid.Row="1"
 						 Margin="20,0,20,10"
@@ -49,6 +55,14 @@
 				<TextBlock Text="Item Quantity"
 						   Grid.Row="2"
 						   Margin="20,0,0,5"/>
+
+				<TextBlock x:Name="quantityError"
+				   Text="Quantity must be a number."
+				   Foreground="Red"
+				   Margin="120,0,0,0"
+				   Grid.Row="2"
+				   IsVisible="False" />
+
 				<TextBox Watermark="Enter Item Quantity"
 						 Grid.Row="3"
 						 Margin="20,0,20,10"
@@ -58,6 +72,13 @@
 						   Grid.Row="4"
 						   Margin="20,0,20,5"
 						   />
+				<TextBlock x:Name="categoryError"
+				   Text="Please select a Category"
+				   Foreground="Red"
+				   Margin="100,0,0,0"
+				   Grid.Row="4"
+				   IsVisible="False" />
+
 				<ComboBox 
 					Grid.Row="5"
 					Margin="20,0,20,10"
@@ -68,6 +89,14 @@
 				<TextBlock Text="Item Description"
 						   Grid.Row="6"
 						   Margin="20,0,0,5"/>
+				<TextBlock x:Name="descriptionError"
+				   Text="Please select a Category"
+				   Foreground="Red"
+				   Margin="140,0,0,0"
+				   Grid.Row="6"
+				   IsVisible="False" />
+
+
 				<TextBox Watermark="Enter Item Description"
 						 Grid.Row="7"
 						 Height="100"

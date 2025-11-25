@@ -6,6 +6,7 @@ using InventoryTracker.Models;
 using InventoryTracker.ViewModels;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace InventoryTracker;
 
@@ -36,20 +37,29 @@ public partial class WastedPage : UserControl
         if (sender is TextBox tb && DataContext is WastedViewModel vm)
         {
             vm.SearchType.SearchText = tb.Text;
-            FormatHelper.FormatSearch(vm.DisplayedItems, vm.AllItems, tb.Text);
+            FormatHelper.FormatSearch(vm.DisplayedItems, vm.AllItems, tb.Text, vm.SearchType.category);
             //vm.FormatSearch();
         }
     }
 
     private void QuantityTextBox_Changed(object? sender, TextChangedEventArgs e)
     {
-        if(sender is TextBox textbx && textbx.Tag is Item item && DataContext is WastedViewModel vm)
+        if (sender is TextBox textbx && textbx.Tag is Item item && DataContext is WastedViewModel vm)
         {
             if (int.TryParse(textbx.Text, out int newQty))
             {
                 vm.database.updateQuantity(item.skuID, newQty);
                 item.Quantity = newQty;
             }
+        }
+    }
+
+    private void CategoryChanged_Change(object? sender, SelectionChangedEventArgs e)
+    {
+        if(sender is ComboBox comboBox && DataContext is WastedViewModel vm && comboBox.SelectedItem is Category cat)
+        {
+            vm.SearchType.Category = cat.CategoryType;
+            FormatHelper.FormatSearch(vm.DisplayedItems, vm.AllItems, vm.SearchType.searchText, vm.SearchType.category);
         }
     }
 }

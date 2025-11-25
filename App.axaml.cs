@@ -7,6 +7,11 @@ using Avalonia.Markup.Xaml;
 using InventoryTracker.ViewModels;
 using InventoryTracker.Views;
 using InventoryTracker.Database;
+using System.IO;
+using InventoryTracker.Models;
+using System;
+using System.Diagnostics;
+using InventoryTracker.Helpers;
 
 namespace InventoryTracker;
 
@@ -24,22 +29,34 @@ public partial class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
 
-            // TODO: Needs to be changed to Reading JSON FILE
-            var config = new Models.DatabaseSettings
+            if(!File.Exists("DatabaseSettings.json"))
             {
-                Database = "testing",
-                Password = "password",
-                Server = "127.0.0.1",
-                Username = "root"
-            };
+                JsonHelper.WriteJson("DatabaseSettings.json", new DatabaseSettings());
+            }
+            if(!File.Exists("InventoryTrackerSettings.json"))
+            {
+                JsonHelper.WriteJson("InventoryTrackerSettings.json", new Thresholds());
+            }
 
-            var db = new DatabaseManager(config);
-            db.createItemsTable();
+            var databaseSettings = JsonHelper.ReadConfiguration<DatabaseSettings>("DatabaseSettings.json");
+            DatabaseManager db = null;
+            try
+            {
+                db = new DatabaseManager(databaseSettings);
+                db.createTables();
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Database no Exists");
+            }
+
+            var thresholds = JsonHelper.ReadConfiguration<Thresholds>("InventoryTrackerSettings.json");
+
 
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(db, config),
+                DataContext = new MainWindowViewModel(db, databaseSettings, thresholds),
             };
         }
 

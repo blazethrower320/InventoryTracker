@@ -16,11 +16,14 @@ namespace InventoryTracker.ViewModels
         [ObservableProperty]
         private ObservableCollection<Item> displayedItems;
         public Search SearchType { get; }
-        public DashboardViewModel(ObservableCollection<Item> items, ObservableCollection<Item> displayed, Search search)
+        public Thresholds thresholds { get; }
+        public DashboardViewModel(MainWindowViewModel mainVM)
         {
-            AllItems = items;
-            displayedItems = displayed;
-            SearchType = search;
+            AllItems = mainVM.AllItems;
+            displayedItems = mainVM.DisplayedItems;
+            SearchType = mainVM.Search;
+            thresholds = mainVM.thresholds;
+
         }
     }
 }
